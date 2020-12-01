@@ -17,13 +17,18 @@ products.py - A Python script to obtain the energy_site_id for the Tesla account
   - Gather the "energy_site_id" for the account
   - Take command line arguments to switch the mode of the Solar/Powerwalls to/from self_consumption or autonomous
 
-Usage:
+Installation:
 
 Clone this repository to your host:
-'git clone https://github.com/natrlhy/teslaPowerwall.git'
-
+```
+git clone https://github.com/natrlhy/teslaPowerwall.git
+```
 Switch the mode to the Self-powered mode in the app:
+```
 python3 products.py self_consumption
+```
 
 Switch the mode to Advanced time-based control in the app:
+```
 python3 products.py autonomous
+```
