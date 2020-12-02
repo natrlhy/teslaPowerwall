@@ -9,13 +9,15 @@ import yaml
 BASE_URL = "https://owner-api.teslamotors.com"
 TESLA_CLIENT_ID = "81527cff06843c8634fdc09e8ac0abefb46ac849f38fe1e431c2ef2106796384"
 TESLA_CLIENT_SECRET = "c7257eb71a564034f9419ee651c7d0e5f7aa6bfbd18bafb5c5c033b093bb2fa3"
+ACCOUNTS = "~/teslaPowerwall/accounts.yml"
+TOKENFILE = "~/teslaPowerwall/token.yml"
 
 
 def obtainToken():
     """
     This method makes an oauth Tesla API call to obtain an Access Token
     """
-    conf = yaml.safe_load(open("./accounts.yml"))
+    conf = yaml.safe_load(open(ACCOUNTS))
     url = BASE_URL + "/oauth/token"
     auth = {
         "grant_type": "password",
@@ -34,8 +36,8 @@ def obtainToken():
 
 class Token:
     NOW = time.time()
-    TOKENFILE = "./token.yml"
-    ACCOUNTS = "./accounts.yml"
+    # ACCOUNTS = "./accounts.yml"
+    # TOKENFILE = "./token.yml"
 
     def __init__(self):
         self.tokenstr = self.readtoken()

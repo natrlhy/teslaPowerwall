@@ -8,6 +8,8 @@ In an attempt to simplify the lack of functionality in the Tesla app, I wanted a
 
 ## I've created two .py files
 
+---
+
 teslatoken.py - A Python script to automate getting a valid oauth token from Tesla
 
 - Read a .yml file that contains the username and password for the Tesla account
@@ -23,20 +25,49 @@ pw_mode.py - A Python script to obtain the energy_site_id for the Tesla account 
 
 ## Installation
 
+---
+
 Clone this repository to your host:
 
-```
+```text
 git clone https://github.com/natrlhy/teslaPowerwall.git
 ```
-Switch the mode to the Self-powered mode in the app:
+
+## Usage
+
+Modify the accounts.yml to include your Tesla Account email address the the respective password.
+
+In the teslatoken.py file modify these lines to fit your environment:
+
+```text
+ACCOUNTS = "~/teslaPowerwall/accounts.yml"
+TOKENFILE = "~/teslaPowerwall/token.yml"
 ```
+
+Switch the mode to the Self-powered mode in the app:
+
+```text
 python3 pw_mode.py self_consumption
 ```
 
 Switch the mode to Advanced time-based control in the app:
 
-```
+```text
 python3 pw_mode.py autonomous
 ```
-## To-do List
+
+## Suggestions
+
+To automate this, I am using a Raspberry Pi3. In cron I have this set:
+
+```text
+00 15 * * * /usr/bin/sudo /usr/bin/python3 /root/teslaPowerwall/pw_mode.py self_consumption >> /root/teslaPowerwall/powerwall.log 2>&1
+00 17 * * * /usr/bin/sudo /usr/bin/python3 /root/teslaPowerwall/pw_mode.py autonomous >> /root/teslaPowerwall/powerwall.log 2>&1
+```
+
+---
+
+## To-Do List
+
 - Implement logging
+- Command line switch parameters and help
