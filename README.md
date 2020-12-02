@@ -55,6 +55,8 @@ Switch the mode to Advanced time-based control:
 python3 pw_mode.py autonomous
 ```
 
+![tesla_app1.png](images/tesla_app1.png)
+
 ## Suggestions
 
 To automate this, I am using a Raspberry Pi3. In cron I have this set:
@@ -71,4 +73,4 @@ To automate this, I am using a Raspberry Pi3. In cron I have this set:
 - Implement logging
 - Command line switch parameters and help
 
-Thanks to <https://www.teslaapi.io/> for their teardown on the current Tesla API!
+Thanks a friend for helping me with Python and to <https://www.teslaapi.io/> for their teardown on the current Tesla API!
