@@ -4,6 +4,8 @@ A project to automate switching modes for Tesla Powerwall Owners
 
 ## Welcome! This is my 1st Python project
 
+Thanks a friend for helping me with Python in a huge way and to <https://www.teslaapi.io/> for their teardown on the current Tesla API!
+
 In an attempt to simplify the lack of functionality in the Tesla app, I wanted a way to switch the App's mode from Self-powered (self_consumption) to Advanced time-based control (autonomous). For my use case, I do not want to export energy back to the grid and want to charge my Powerwalls as much as possible. This way I can run off of our Powerwalls as much as possible so we don't consume electricity between 3pm - 12am (my peak price times).
 
 ## I've created two .py files
@@ -72,5 +74,3 @@ To automate this, I am using a Raspberry Pi3. In cron I have this set:
 
 - Implement logging
 - Command line switch parameters and help
-
-Thanks a friend for helping me with Python and to <https://www.teslaapi.io/> for their teardown on the current Tesla API!
