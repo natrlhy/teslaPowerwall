@@ -57,7 +57,11 @@ Switch the mode to Advanced time-based control:
 python3 pw_mode.py autonomous
 ```
 
-![Sample](images/tesla_app2.jpeg)
+![Advanced Mode](images/tesla_app1.jpeg)
+
+After switching to Self-powered. Supplying Solar energy to the home and charging the Powerwalls!
+
+![Self-powered Mode](images/tesla_app2.png)
 
 ## Suggestions
 
