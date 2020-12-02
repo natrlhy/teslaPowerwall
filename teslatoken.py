@@ -1,3 +1,4 @@
+import logging
 import os
 import time
 
@@ -10,12 +11,18 @@ BASE_URL = "https://owner-api.teslamotors.com"
 TESLA_CLIENT_ID = "81527cff06843c8634fdc09e8ac0abefb46ac849f38fe1e431c2ef2106796384"
 TESLA_CLIENT_SECRET = "c7257eb71a564034f9419ee651c7d0e5f7aa6bfbd18bafb5c5c033b093bb2fa3"
 
+logging.basicConfig(
+    filename="powerwall.log",
+    level=logging.INFO,
+    format="%(asctime)s:%(levelname)s:%(message)s",
+)
+
 
 def obtainToken():
     """
     This method makes an oauth Tesla API call to obtain an Access Token
     """
-    conf = yaml.safe_load(open("./accounts.yml"))
+    conf = yaml.safe_load(open("accounts.yml"))
     url = BASE_URL + "/oauth/token"
     auth = {
         "grant_type": "password",
@@ -34,8 +41,8 @@ def obtainToken():
 
 class Token:
     NOW = time.time()
-    ACCOUNTS = "./accounts.yml"
-    TOKENFILE = "./token.yml"
+    ACCOUNTS = "accounts.yml"
+    TOKENFILE = "token.yml"
 
     def __init__(self):
         self.tokenstr = self.readtoken()
@@ -66,7 +73,7 @@ class Token:
             "email": conf["data"]["email"],
             "password": conf["data"]["password"],
         }
-        print("Getting new auth Token...")
+        logging.info("Getting new auth token...")
         response = requests.post(url=url, data=auth)
         if response.status_code != 200:
             raise Exception("Couldn't get auth token. Reason: %s" % (str(response)))

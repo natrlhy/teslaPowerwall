@@ -1,9 +1,15 @@
 from teslatoken import Token
+import logging
 import sys
 import time
 
 import requests
 
+logging.basicConfig(
+    filename="powerwall.log",
+    level=logging.INFO,
+    format="%(asctime)s:%(levelname)s:%(message)s",
+)
 # CONSTANTS
 
 BASE_URL = "https://owner-api.teslamotors.com"
@@ -53,8 +59,7 @@ def updatemode(siteid, mode):
         )
         if response.status_code != 200:
             raise Exception("Couldn't get auth token. Reason: %s" % (str(response)))
-        print(time.ctime())
-        print(response.json())
+        logging.info(response.json())
 
 
 if len(sys.argv) == 2:
