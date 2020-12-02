@@ -31,9 +31,11 @@ Clone this repository to your host:
 git clone https://github.com/natrlhy/teslaPowerwall.git
 ```
 
+Ensure you have a working installation of Python 3 on your system
+
 ## Usage
 
-Modify the accounts.yml to include your Tesla Account email address the the respective password.
+Modify the `accounts.yml` to include your Tesla Account email address the the respective password.
 
 In the `teslatoken.py` file you may want to modify these lines to fit your environment. It assumes you will be in the directory that you are running the `pw_mode.py` script. Search the `teslatoken.py` file for `yml` and modify the paths as needed.
 
@@ -59,6 +61,8 @@ python3 pw_mode.py autonomous
 
 ## Suggestions
 
+### Linux/Rasberry Pi
+
 To automate this, I am using a Raspberry Pi3. In cron I have this set:
 
 ```text
@@ -66,7 +70,19 @@ To automate this, I am using a Raspberry Pi3. In cron I have this set:
 00 17 * * * cd ~/teslaPowerwall;python3 pw_mode.py autonomous
 ```
 
----
+### Windows
+
+A quick guide on how to import tasks:
+
+<https://www.tenforums.com/tutorials/65264-import-task-task-scheduler-windows.html>
+
+I've included two Windows Task Scheduler xml files you can import into Windows Task Scheduler. You will need to modify the following:
+
+- Change User or Group
+- Path to where you will be running the python script
+- Times you'd like to run each task to fit your needs
+
+As noted in the Installation section above, make sure you have a working Python 3.8 installation on your Windows machine
 
 ## To-Do List
 
