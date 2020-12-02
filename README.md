@@ -55,7 +55,7 @@ Switch the mode to Advanced time-based control:
 python3 pw_mode.py autonomous
 ```
 
-<img src="images/tesla_app1.png" width="300">
+![Sample](images/tesla_app2.jpeg)
 
 ## Suggestions
 
