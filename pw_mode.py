@@ -56,6 +56,7 @@ def updatemode(siteid, mode):
             url=url,
             params=params,
             headers={"Authorization": "Bearer " + token.tokenstr},
+            timeout=3.001,
         )
         if response.status_code != 200:
             raise Exception("Couldn't get auth token. Reason: %s" % (str(response)))

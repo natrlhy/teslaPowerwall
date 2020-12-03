@@ -74,7 +74,7 @@ class Token:
             "password": conf["data"]["password"],
         }
         logging.info("Getting new auth token...")
-        response = requests.post(url=url, data=auth)
+        response = requests.post(url=url, data=auth, timeout=3.500)
         if response.status_code != 200:
             raise Exception("Couldn't get auth token. Reason: %s" % (str(response)))
         expires = response.json().get("created_at", 0) + response.json().get(
