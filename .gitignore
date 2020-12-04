@@ -1,5 +1,5 @@
 accounts.yml
-__pycache__
 *.pyc
-.vscode
 *.log
+.vscode
+__pycache__
