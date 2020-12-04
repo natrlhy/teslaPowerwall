@@ -63,7 +63,7 @@ def updatemode(siteid, mode):
         if response.status_code != 200:
             logging.error("Couldn't change energy mode. Reason: %s" % (str(response)))
             raise Exception("Couldn't change energy mode. Reason: %s" % (str(response)))
-        logging.info(response.json() % (str(mode)))
+        logging.info(response.json())
 
 
 if len(sys.argv) == 2:
@@ -72,3 +72,5 @@ if len(sys.argv) == 2:
     if energy:
         siteid = list(energy.keys())[0]
         updatemode(siteid, mode)
+    logging.info(mode)
+    
