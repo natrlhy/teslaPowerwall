@@ -1,0 +1,4 @@
+accounts.yml
+*.pyc
+.vscode
+*.log
