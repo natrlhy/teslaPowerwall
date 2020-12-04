@@ -25,6 +25,7 @@ def productlists():
     )
 
     if response.status_code != 200:
+        logging.error("Couldn't get products. Reason: %s" % (str(response)))
         raise Exception("Couldn't get products. Reason: %s" % (str(response)))
     return response.json().get("response", [])
 
@@ -45,6 +46,7 @@ def getsolarproduct(productlist):
 def updatemode(siteid, mode):
 
     if mode not in C.ENERGY_MODES:
+        logging.error("Mode not valid. Mode = %s." % mode)
         raise Exception("Mode not valid. Mode = %s." % mode)
     if not isinstance(siteid, int):
         siteid = ""
@@ -61,7 +63,7 @@ def updatemode(siteid, mode):
         if response.status_code != 200:
             logging.error("Couldn't change energy mode. Reason: %s" % (str(response)))
             raise Exception("Couldn't change energy mode. Reason: %s" % (str(response)))
-        logging.info(response.json())
+        logging.info(response.json() % (str(mode)))
 
 
 if len(sys.argv) == 2:
