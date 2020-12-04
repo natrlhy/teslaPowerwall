@@ -15,26 +15,6 @@ logging.basicConfig(
 )
 
 
-# def obtainToken():
-#     """
-#     This method makes an oauth Tesla API call to obtain an Access Token
-#     """
-#     conf = yaml.safe_load(open("accounts.yml"))
-#     url = BASE_URL + "/oauth/token"
-#     auth = {
-#         "grant_type": "password",
-#         "client_id": TESLA_CLIENT_ID,
-#         "client_secret": TESLA_CLIENT_SECRET,
-#         "email": conf["data"]["email"],
-#         "password": conf["data"]["password"],
-#     }
-
-#     response = requests.post(url=url, data=auth)
-#     if response.status_code != 200:
-#         raise Exception("Couldn't get auth token. Reason: %s" % (str(response)))
-
-#     return response.json()["access_token"]
-
 class Token:
     NOW = time.time()
 
@@ -69,8 +49,8 @@ class Token:
         }
         logging.info("Getting new auth token...")
 
-        response = apicall(C.TOKEN_ENDPOINT, 'POST', headers={}, data=auth)
-        #response = requests.post(url=url, data=auth, timeout=C.TIMEOUT)
+        response = apicall(C.TOKEN_ENDPOINT, "POST", headers={}, data=auth)
+        # response = requests.post(url=url, data=auth, timeout=C.TIMEOUT)
         if response is None or response.status_code != 200:
             logging.error("Couldn't get auth token. Reason: %s" % (str(response)))
             raise Exception("Couldn't get auth token. Reason: %s" % (str(response)))

@@ -18,7 +18,6 @@ logging.basicConfig(
 def productlists():
 
     token = Token()
-    # url = C.BASE_URL + "/api/1/products"
     response = apicall(
         C.PRODUCTS_ENDPOINT,
         "GET",
@@ -62,7 +61,7 @@ def updatemode(siteid, mode):
         if response.status_code != 200:
             logging.error("Couldn't change energy mode. Reason: %s" % (str(response)))
             raise Exception("Couldn't change energy mode. Reason: %s" % (str(response)))
-        logging.info(response.json()) + mode
+        logging.info(response.json() + mode)
 
 
 if len(sys.argv) == 2:
