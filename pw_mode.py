@@ -1,30 +1,32 @@
-from teslatoken import Token
 import logging
 import sys
 import time
 
 import requests
 
+import constants as C
+from common import apicall
+from teslatoken import Token
+
 logging.basicConfig(
     filename="powerwall.log",
     level=logging.INFO,
     format="%(asctime)s:%(levelname)s:%(message)s",
 )
-# CONSTANTS
-
-BASE_URL = "https://owner-api.teslamotors.com"
-ENERGY_MODES = ["self_consumption", "autonomous"]
 
 
 def productlists():
 
     token = Token()
-    url = BASE_URL + "/api/1/products"
-    response = requests.get(
-        url=url, headers={"Authorization": "Bearer " + token.tokenstr}
+    # url = C.BASE_URL + "/api/1/products"
+    response = apicall(
+        C.PRODUCTS_ENDPOINT,
+        "GET",
+        headers={"Authorization": "Bearer " + token.tokenstr},
     )
+
     if response.status_code != 200:
-        raise Exception("Couldn't get auth token. Reason: %s" % (str(response)))
+        raise Exception("Couldn't get products. Reason: %s" % (str(response)))
     return response.json().get("response", [])
 
 
@@ -43,23 +45,23 @@ def getsolarproduct(productlist):
 
 def updatemode(siteid, mode):
 
-    if mode not in ENERGY_MODES:
+    if mode not in C.ENERGY_MODES:
         raise Exception("Mode not valid. Mode = %s." % mode)
     if not isinstance(siteid, int):
         siteid = ""
 
     if siteid:
         token = Token()
-        url = BASE_URL + "/api/1/energy_sites/%s/operation" % siteid
         params = {"default_real_mode": mode}
-        response = requests.post(
-            url=url,
-            params=params,
+        response = apicall(
+            C.OPERATION_ENDPOINT.format(siteid),
+            "POST",
             headers={"Authorization": "Bearer " + token.tokenstr},
-            timeout=3.001,
+            params=params,
         )
         if response.status_code != 200:
-            raise Exception("Couldn't get auth token. Reason: %s" % (str(response)))
+            logging.error("Couldn't change energy mode. Reason: %s" % (str(response)))
+            raise Exception("Couldn't change energy mode. Reason: %s" % (str(response)))
         logging.info(response.json())
 
 
