@@ -72,4 +72,4 @@ if len(sys.argv) == 2:
     if energy:
         siteid = list(energy.keys())[0]
         updatemode(siteid, mode)
-    logging.info("Changed mode to:" + mode)
+    logging.info("Changed mode to: " + mode)
