@@ -8,7 +8,7 @@ A project to automate switching modes for Tesla Powerwall Owners
 
 In an attempt to simplify the lack of functionality in the Tesla app, I wanted a way to switch from Advanced time-based control (autonomous) to Self-powered (self_consumption), and back after the sun sets. For my use case, I do not want to export energy back to the grid and want to charge my Powerwalls as much as possible. This way I can run off of our Powerwalls as long as possible so we don't consume electricity between 3pm - 12am (my peak price times).
 
-## I've created two .py files
+## Understanding the files provided
 
 `teslatoken.py` - A Python script to automate getting a valid oauth token from Tesla
 
@@ -25,22 +25,21 @@ In an attempt to simplify the lack of functionality in the Tesla app, I wanted a
 
 ## Installation
 
-Clone this repository to your host:
+Clone this repository to your server/host/VM, etc:
 
 ```text
 git clone https://github.com/natrlhy/teslaPowerwall.git
 ```
 
-Ensure you have a working installation of Python 3 on your system
+Ensure you have a working installation of Python 3 on your server
 
 ## Usage
 
 Modify the `accounts.yml` to include your Tesla Account email address the the respective password.
 
-In the `teslatoken.py` file you may want to modify these lines to fit your environment. It assumes you will be in the directory that you are running the `pw_mode.py` script. Search the `teslatoken.py` file for `yml` and modify the paths as needed.
+In the `constants.py` file you may want to modify these lines to fit your environment. It assumes you will be in the directory that you are running the `pw_mode.py` script.
 
 ```text
-conf = yaml.safe_load(open("accounts.yml"))
 ACCOUNTS = "accounts.yml"
 TOKENFILE = "token.yml"
 ```
@@ -48,14 +47,20 @@ TOKENFILE = "token.yml"
 Switch the mode to the Self-powered mode:
 
 ```text
+cd ~/teslPowerwall
 python3 pw_mode.py self_consumption
 ```
 
 Switch the mode to Advanced time-based control:
 
 ```text
+cd ~/teslPowerwall
 python3 pw_mode.py autonomous
 ```
+
+There will be a resulting `powerwall.log` file you can review for issues/errors, etc.
+
+## Screenshots
 
 ![Advanced Mode](images/tesla_app1.jpeg)
 
@@ -82,6 +87,7 @@ A quick guide on how to import tasks:
 
 I've included two Windows Task Scheduler xml files you can import into Windows Task Scheduler. You will need to modify the following:
 
+- Read instructions above first on overall understanding of these scripts/files.
 - Change User or Group
 - Path to where you will be running the python script
 - Times you'd like to run each task to fit your needs
@@ -90,5 +96,4 @@ As noted in the Installation section above, make sure you have a working Python 
 
 ## To-Do List
 
-- Implement logging
 - Command line switch parameters and help
