@@ -45,7 +45,6 @@ def getsolarproduct(productlist):
 
 def setreserve(siteid, respct):
 
-    respct = 100
     if not isinstance(siteid, int):
         siteid = ""
 
@@ -53,7 +52,7 @@ def setreserve(siteid, respct):
         token = Token()
         params = {"backup_reserve_percent": respct}
         response = apicall(
-            C.OPERATION_ENDPOINT.format(siteid),
+            C.RESERVE_ENDPOINT.format(siteid),
             "POST",
             headers={"Authorization": "Bearer " + token.tokenstr},
             params=params,
@@ -73,5 +72,5 @@ if len(sys.argv) == 2:
     energy = getsolarproduct(productlists())
     if energy:
         siteid = list(energy.keys())[0]
-        setreserve(siteid, respct)
-    logging.info("Changed mode to: " + respct)
+        setreserve(siteid, float(respct)
+    logging.info("Changed backup reserve to: " + respct)

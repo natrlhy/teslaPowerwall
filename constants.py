@@ -9,6 +9,7 @@ BASE_URL = "https://owner-api.teslamotors.com"
 TOKEN_ENDPOINT = "/oauth/token"
 PRODUCTS_ENDPOINT = "/api/1/products"
 OPERATION_ENDPOINT = "/api/1/energy_sites/{}/operation"
+RESERVE_ENDPOINT = "/api/1/energy_sites/{}/backup"
 ENERGY_MODES = ["self_consumption", "autonomous"]
 
 TESLA_CLIENT_ID = "81527cff06843c8634fdc09e8ac0abefb46ac849f38fe1e431c2ef2106796384"
