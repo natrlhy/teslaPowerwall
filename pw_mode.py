@@ -73,36 +73,3 @@ if len(sys.argv) == 2:
         siteid = list(energy.keys())[0]
         updatemode(siteid, mode)
     logging.info("Changed mode to: " + mode)
-
-
-def setreserve(siteid, respct):
-
-    if not isinstance(siteid, int):
-        siteid = ""
-
-    if siteid:
-        token = Token()
-        params = {"backup_reserve_percent": respct}
-        response = apicall(
-            C.OPERATION_ENDPOINT.format(siteid),
-            "POST",
-            headers={"Authorization": "Bearer " + token.tokenstr},
-            params=params,
-        )
-        if response.status_code != 200:
-            logging.error(
-                "Couldn't change reserve percentage. Reason: %s" % (str(response))
-            )
-            raise Exception(
-                "Couldn't change reserve percentage. Reason: %s" % (str(response))
-            )
-        logging.info(response.json())
-
-
-if len(sys.argv) == 2:
-    respct = sys.argv[1]
-    energy = getsolarproduct(productlists())
-    if energy:
-        siteid = list(energy.keys())[0]
-        setreserve(siteid, respct)
-    logging.info("Changed reserve percent to: " + respct)
