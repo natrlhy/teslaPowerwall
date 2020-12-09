@@ -64,7 +64,7 @@ def setreserve(siteid, respct):
             raise Exception(
                 "Couldn't change reserve percent. Reason: %s" % (str(response))
             )
-        logging.info(response.json())
+        logging.info(response.json(error))
 
 
 if len(sys.argv) == 2:
