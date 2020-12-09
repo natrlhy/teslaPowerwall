@@ -68,9 +68,9 @@ def setreserve(siteid, respct):
 
 
 if len(sys.argv) == 2:
-    respct = sys.argv[1]
+    respct = float(sys.argv[1])
     energy = getsolarproduct(productlists())
     if energy:
         siteid = list(energy.keys())[0]
-        setreserve(siteid, float(respct)
-    # logging.info("Changed backup reserve to: " + respct)
+        setreserve(siteid, respct)
+    logging.info("Changed backup reserve to: " + respct)
