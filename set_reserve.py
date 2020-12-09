@@ -73,4 +73,4 @@ if len(sys.argv) == 2:
     if energy:
         siteid = list(energy.keys())[0]
         setreserve(siteid, float(respct)
-    logging.info("Changed backup reserve to: " + respct)
+    # logging.info("Changed backup reserve to: " + respct)
